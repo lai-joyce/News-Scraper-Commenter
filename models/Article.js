@@ -15,6 +15,11 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
+
+  // text: {
+  //   type: String,
+  //   required: true
+  // },
   // This only saves one note's ObjectId, ref refers to the Note model
   comment: {
     type: Schema.Types.ObjectId,
