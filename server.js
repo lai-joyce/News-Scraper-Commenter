@@ -15,6 +15,8 @@ var cheerio = require("cheerio");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
 
+var handlebars = require("express-handlebars");
+
 
 // Initialize Express
 var app = express();
@@ -27,6 +29,10 @@ app.use(bodyParser.urlencoded({
 
 // Make public a static dir
 app.use(express.static("public"));
+
+// Setup engine for Handlebars
+app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
 // Database configuration with mongoose
 mongoose.connect("mongodb://localhost/news-scraper");

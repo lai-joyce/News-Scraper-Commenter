@@ -7,7 +7,7 @@ This is an app that lets users scrape articles from a news site into a Mongo dat
 * [node.js](https://nodejs.org/en/) - JS runtime server environment
 * [express](https://expressjs.com/) - server
 * [express-handlebars](https://www.npmjs.com/package/express-handlebars) - Handlebars view engine for Express
-* [mongoose](http://mongoosejs.com/) - JS runtime server environment
-* [body-parser](https://www.npmjs.com/package/body-parser) - server
-* [cheerio](https://www.npmjs.com/package/cheerio) - Handlebars view engine for Express
-* [request](https://www.npmjs.com/package/request) - Handlebars view engine for Express
+* [mongoose](http://mongoosejs.com/) - mongoDB object data modeling for node.js
+* [body-parser](https://www.npmjs.com/package/body-parser) - incoming request body-parsing middleware
+* [cheerio](https://www.npmjs.com/package/cheerio) - server-side library to parse HTML DOM 
+* [request](https://www.npmjs.com/package/request) - make HTTP calls
