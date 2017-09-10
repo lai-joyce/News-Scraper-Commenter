@@ -67,7 +67,7 @@ app.get("/api/fetch", function(req, res) {
       // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this).children("a").text();
       result.link = $(this).children("a").attr("href");
-      result.text = $(this).children("p.standfirst.truncate").text();
+      result.summary = $(this).parent().find("p.standfirst.truncate").text();
 
       // Using our Article model, create a new entry
       // This effectively passes the result object to the entry (and the title and link)
