@@ -94,37 +94,37 @@ $(document).ready(function() {
     articleContainer.append(emptyAlert);
   }
 
-  function renderNotesList(data) {
+  function renderCommentsList(data) {
     // This function handles rendering note list items to our notes modal
     // Setting up an array of notes to render after finished
     // Also setting up a currentNote variable to temporarily store each note
-    var notesToRender = [];
-    var currentNote;
-    if (!data.notes.length) {
+    var commentsToRender = [];
+    var currentComment;
+    if (!data.comments.length) {
       // If we have no notes, just display a message explaing this
-      currentNote = ["<li class='list-group-item'>", "No notes for this article yet.", "</li>"].join("");
-      notesToRender.push(currentNote);
+      currentComment = ["<li class='list-group-item'>", "No notes for this article yet.", "</li>"].join("");
+      commentsToRender.push(currentComment);
     }
     else {
       // If we do have notes, go through each one
-      for (var i = 0; i < data.notes.length; i++) {
-        // Constructs an li element to contain our noteText and a delete button
-        currentNote = $(
+      for (var i = 0; i < data.comments.length; i++) {
+        // Constructs an li element to contain our commentText and a delete button
+        currentComment = $(
           [
             "<li class='list-group-item note'>",
-            data.notes[i].noteText,
+            data.comments[i].commentText,
             "<button class='btn btn-danger note-delete'>x</button>",
             "</li>"
           ].join("")
         );
         // Store the note id on the delete button for easy access when trying to delete
-        currentNote.children("button").data("_id", data.notes[i]._id);
+        currentComment.children("button").data("_id", data.comments[i]._id);
         // Adding our currentNote to the notesToRender array
-        notesToRender.push(currentNote);
+        commentsToRender.push(currentComment);
       }
     }
     // Now append the notesToRender to the note-container inside the note modal
-    $(".note-container").append(notesToRender);
+    $(".note-container").append(commentsToRender);
   }
 
   function handleArticleDelete() {
@@ -186,13 +186,13 @@ $(document).ready(function() {
     var commentData;
     var newComment = $(".bootbox-body textarea").val().trim();
     // If we actually have data typed into the note input field, format it
-    // and post it to the "/api/notes" route and send the formatted noteData as well
+    // and post it to the "/api/comments" route and send the formatted commentData as well
     if (newComment) {
       commentData = {
         _id: $(this).data("article")._id,
         commentText: newComment
       };
-      $.post("/api/comments", commentData).then(function() {
+      $.get("/api/comments", commentData).then(function() {
         // When complete, close the modal
         bootbox.hideAll();
       });
