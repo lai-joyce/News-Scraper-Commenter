@@ -97,19 +97,20 @@ $(document).ready(function() {
     // When we rendered the article initially, we attatched a javascript object containing the headline id
     // to the element using the .data method. Here we retrieve that.
     var articleToSave = $(this).parents(".panel").data();
-    articleToSave.saved = true;
+    articleToSave.isSaved = true;
     // Using a patch method to be semantic since this is an update to an existing record in our collection
     $.ajax({
       method: "PUT",
-      url: "/api/headlines",
-      data: articleToSave
+      url: "/api/saved/" + articleToSave._id,
+      //data: articleToSave
     }).then(function(data) {
       // If successful, mongoose will send back an object containing a key of "ok" with the value of 1
       // (which casts to 'true')
-      if (data.ok) {
+      //if (data.ok) {
         // Run the initPage function again. This will reload the entire list of articles
         initPage();
-      }
+        
+      //}
     });
   }
 
@@ -120,7 +121,7 @@ $(document).ready(function() {
       // already in our collection, re render the articles on the page
       // and let the user know how many unique articles we were able to save
       initPage();
-      bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "<h3>");
+      bootbox.alert("<h3 class='text-center m-top-80'>" + data + "<h3>");
     });
   }
 });
