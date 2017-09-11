@@ -163,7 +163,7 @@ app.get("/articles/:id", function(req, res) {
 
 
 // Create a new note or replace an existing note
-app.post("/articles/:id", function(req, res) {
+app.get("/api/comments/:id", function(req, res) {
   // Create a new note and pass the req.body to the entry
   var newComment = new Comment(req.body);
 

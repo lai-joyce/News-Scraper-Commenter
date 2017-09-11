@@ -144,8 +144,8 @@ $(document).ready(function() {
   }
 
   function handleArticleComments() {
-    // This function handles opending the notes modal and displaying our notes
-    // We grab the id of the article to get notes for from the panel element the delete button sits inside
+    // This function handles appending the comments modal and displaying our comments
+    // We grab the id of the article to get comments from the panel element the delete button sits inside
     var currentArticle = $(this).parents(".panel").data();
     // Grab any notes with this headline/article id
     $.get("/api/comments/" + currentArticle._id).then(function(data) {
