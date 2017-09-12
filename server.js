@@ -1,5 +1,5 @@
 /* Showing Mongoose's "Populated" Method
- * =============================================== */
+* =============================================== */
 
 // Dependencies
 var express = require("express");
@@ -140,7 +140,7 @@ app.put("/api/saved/:id", function(req, res) {
           res.send(doc);
         }
       });
-});
+    });
 
 // Grab an article by it's ObjectId
 app.get("/articles/:id", function(req, res) {
@@ -172,11 +172,11 @@ app.get("/api/comments/:id", function(req, res) {
     // Log any errors
     if (error) {
       console.log(error);
-    }
+    } 
     // Otherwise
     else {
       // Use the article id to find and update it's note
-      Article.findOneAndUpdate({ "_id": req.params.id }, { "comment": doc._id })
+      Article.findOne({ "_id": req.params.id }, { "comment": doc._id })
       // Execute the above query
       .exec(function(err, doc) {
         // Log any errors
@@ -191,6 +191,7 @@ app.get("/api/comments/:id", function(req, res) {
     }
   });
 });
+
 
 
 // Listen on port 3000

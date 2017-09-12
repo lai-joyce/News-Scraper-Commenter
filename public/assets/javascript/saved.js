@@ -192,7 +192,7 @@ $(document).ready(function() {
         _id: $(this).data("article")._id,
         commentText: newComment
       };
-      $.get("/api/comments", commentData).then(function() {
+      $.post("/api/comments", commentData).then(function() {
         // When complete, close the modal
         bootbox.hideAll();
       });
