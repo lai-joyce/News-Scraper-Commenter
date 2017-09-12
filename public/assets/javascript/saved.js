@@ -149,11 +149,12 @@ $(document).ready(function() {
     var currentArticle = $(this).parents(".panel").data();
     // Grab any notes with this headline/article id
     $.get("/api/comments/" + currentArticle._id).then(function(data) {
+    	console.log('IN GET IN HANDLE');
       // Constructing our initial HTML to add to the notes modal
       var modalText = [
         "<div class='container-fluid text-center'>",
         "<h4>Notes For Article: ",
-        currentArticle._id,
+        `${currentArticle._id}`,
         "</h4>",
         "<hr />",
         "<ul class='list-group note-container'>",
@@ -189,13 +190,13 @@ $(document).ready(function() {
     // and post it to the "/api/comments" route and send the formatted commentData as well
     if (newComment) {
       commentData = {
-        _id: $(this).data("article")._id,
+        articleId: $(this).data("article")._id,
         commentText: newComment
-      };
-      $.post("/api/comments", commentData).then(function() {
-        // When complete, close the modal
-        bootbox.hideAll();
-      });
+     };
+	  $.post("/api/comments", commentData).then(function() {
+	    // When complete, close the modal
+	    bootbox.hideAll();
+	  });
     }
   }
 

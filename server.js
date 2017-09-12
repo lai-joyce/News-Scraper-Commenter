@@ -52,7 +52,7 @@ db.once("open", function() {
 // Routes
 // ======
 
-// A GET request to scrape the echojs website
+// A GET request to scrape the nature website
 app.get("/api/fetch", function(req, res) {
 
   // First, we grab the body of the html with request
@@ -164,34 +164,26 @@ app.get("/articles/:id", function(req, res) {
 
 // Create a new note or replace an existing note
 app.get("/api/comments/:id", function(req, res) {
-  // Create a new note and pass the req.body to the entry
-  var newComment = new Comment(req.body);
+  res.send("true");// Create a new note and pass the req.bodvar newComment = new Comment(req.body);
 
-  // And save the new note the db
-  newComment.save(function(error, doc) {
-    // Log any errors
-    if (error) {
-      console.log(error);
-    } 
-    // Otherwise
-    else {
-      // Use the article id to find and update it's note
-      Article.findOne({ "_id": req.params.id }, { "comment": doc._id })
-      // Execute the above query
-      .exec(function(err, doc) {
-        // Log any errors
-        if (err) {
-          console.log(err);
-        }
-        else {
-          // Or send the document to the browser
-          res.send(doc);
-        }
-      });
-    }
-  });
+  
 });
 
+app.post("/api/comments", function(req, res) {
+  var newComment = new Comment(req.body);
+
+  newComment.save({}, function(error, doc) {
+    if (error) {
+      console.log(error);
+    }
+
+    else {
+      res.json(doc);
+    }
+  });
+
+
+});
 
 
 // Listen on port 3000

@@ -6,11 +6,12 @@ var Schema = mongoose.Schema;
 // Create the Comment schema
 var CommentSchema = new Schema({
   // Just a string
-  title: {
-    type: String
+  articleId: {
+  	type: String
   },
+
   // Just a string
-  body: {
+  commentText: {
     type: String
   }
 });
