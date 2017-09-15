@@ -9,6 +9,9 @@ var mongoose = require("mongoose");
 // Requiring our Note and Article models
 var Comment = require("./models/Comment.js");
 var Article = require("./models/Article.js");
+
+var headlinesController = require("./controllers/headlines");
+var notesController = require("./controllers/notes");
 // Our scraping tools
 var request = require("request");
 var cheerio = require("cheerio");
@@ -184,6 +187,14 @@ app.post("/api/comments", function(req, res) {
 
 
 });
+
+app.delete("/api/comments/:id", function(req, res) {
+    var query = {};
+    query._id = req.params.id;
+    notesController.delete(query, function(err, data) {
+      res.json(data);
+    });
+  });
 
 
 // Listen on port 3000

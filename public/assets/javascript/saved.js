@@ -149,7 +149,7 @@ $(document).ready(function() {
     var currentArticle = $(this).parents(".panel").data();
     // Grab any notes with this headline/article id
     $.get("/api/comments/" + currentArticle._id).then(function(data) {
-    	console.log('IN GET IN HANDLE');
+      console.log('IN GET IN HANDLE');
       // Constructing our initial HTML to add to the notes modal
       var modalText = [
         "<div class='container-fluid text-center'>",
@@ -193,10 +193,10 @@ $(document).ready(function() {
         articleId: $(this).data("article")._id,
         commentText: newComment
      };
-	  $.post("/api/comments", commentData).then(function() {
-	    // When complete, close the modal
-	    bootbox.hideAll();
-	  });
+    $.post("/api/comments", commentData).then(function() {
+      // When complete, close the modal
+      bootbox.hideAll();
+    });
     }
   }
 
