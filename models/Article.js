@@ -9,7 +9,7 @@ var ArticleSchema = new Schema({
   title: {
     type: String,
     required: true,
-    unique: true
+    unique: true //so articles aren't scraped twice; only scraped if not in either home or saved pages
   },
   // link is a required string
   link: {
@@ -26,7 +26,7 @@ var ArticleSchema = new Schema({
     type: Boolean,
     required: true
   },
-  // This only saves one note's ObjectId, ref refers to the Note model
+  // This only saves one comment's ObjectId, ref refers to the Comment model
   comment: {
     type: Schema.Types.ObjectId,
     ref: "Comment"

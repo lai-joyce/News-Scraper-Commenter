@@ -96,7 +96,7 @@ app.get("/api/fetch", function(req, res) {
     });
 
     // Tell the browser that we finished scraping the text
-    res.send("Scrape Completed with " + numOfArticles + " articles.");
+    res.send("Scrape completed with any new articles.");
   });
   
 });
@@ -219,7 +219,6 @@ app.delete("/api/comments/:id", function(req, res) {
     }
   });
   });
-
 
 // Listen on port 3000
 app.listen(3000, function() {
