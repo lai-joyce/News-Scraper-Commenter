@@ -20,13 +20,13 @@ mongoose.Promise = Promise;
 
 var handlebars = require("express-handlebars");
 
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port");
-});
-
 
 // Initialize Express
 var app = express();
+
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port");
+});
 
 // Use morgan and body parser with our app
 app.use(logger("dev"));
