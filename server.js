@@ -20,6 +20,8 @@ mongoose.Promise = Promise;
 
 var handlebars = require("express-handlebars");
 
+var PORT = process.env.PORT || 3000;
+
 
 // Initialize Express
 var app = express();
@@ -222,7 +224,7 @@ app.delete("/api/comments/:id", function(req, res) {
   });
   });
 
-var PORT = process.env.PORT || 3000;
+
 // Listen on port 3000
 // app.listen(3000, function() {
 //   console.log("App running on port 3000!");
