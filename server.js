@@ -167,7 +167,22 @@ app.get("/articles/:id", function(req, res) {
 
 // Create a new note or replace an existing note
 app.get("/api/comments/:id", function(req, res) {
-  res.send("true");// Create a new note and pass the req.bodvar newComment = new Comment(req.body);
+  // res.send("trues");
+  Comment.find({ "articleId": req.params.id })
+  // ..and populate all of the notes associated with it
+  .populate("comment")
+  // now, execute our query
+  .exec(function(error, doc) {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    // Otherwise, send the doc to the browser as a json object
+    else {
+      res.json(doc);
+    }
+  });
+  // Create a new note and pass the req.bodvar newComment = new Comment(req.body);
 
   
 });

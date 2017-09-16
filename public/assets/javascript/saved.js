@@ -149,7 +149,7 @@ $(document).ready(function() {
     var currentArticle = $(this).parents(".panel").data();
     // Grab any notes with this headline/article id
     $.get("/api/comments/" + currentArticle._id).then(function(data) {
-      console.log('IN GET IN HANDLE');
+      console.log("this is the data: " + JSON.stringify(data, null, 2));
       // Constructing our initial HTML to add to the notes modal
       var modalText = [
         "<div class='container-fluid text-center'>",
