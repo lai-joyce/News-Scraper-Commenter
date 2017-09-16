@@ -165,7 +165,7 @@ app.get("/articles/:id", function(req, res) {
 });
 
 
-// Create a new note or replace an existing note
+// Grab all the comments associated with a particular article
 app.get("/api/comments/:id", function(req, res) {
   // res.send("trues");
   Comment.find({ "articleId": req.params.id })
@@ -182,7 +182,6 @@ app.get("/api/comments/:id", function(req, res) {
       res.json(doc);
     }
   });
-  // Create a new note and pass the req.bodvar newComment = new Comment(req.body);
 
   
 });
@@ -204,11 +203,21 @@ app.post("/api/comments", function(req, res) {
 });
 
 app.delete("/api/comments/:id", function(req, res) {
-    var query = {};
-    query._id = req.params.id;
-    notesController.delete(query, function(err, data) {
-      res.json(data);
-    });
+    // var query = {};
+    // query._id = req.params.id;
+    // notesController.delete(query, function(err, data) {
+    //   res.json(data);
+    // });
+    Comment.find({"_id": req.params.id}).remove(function(error, doc) {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    // Or send the doc to the browser as a json object
+    else {
+      res.json(doc);
+    }
+  });
   });
 
 
