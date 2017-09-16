@@ -20,7 +20,9 @@ mongoose.Promise = Promise;
 
 var handlebars = require("express-handlebars");
 
-var PORT = process.env.PORT || 3000;
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port");
+});
 
 
 // Initialize Express
