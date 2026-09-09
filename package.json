@@ -17,13 +17,15 @@
   },
   "homepage": "https://github.com/lai-joyce/News-Scraper-Commenter#readme",
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "cheerio": "^1.0.0-rc.2",
-    "express": "^4.15.4",
-    "express-handlebars": "^3.0.0",
-    "mongojs": "^2.4.1",
-    "mongoose": ">=5.7.5",
-    "morgan": "^1.8.2",
-    "request": "^2.81.0"
+    "axios": "^1.12.2",
+    "body-parser": "^1.20.6",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.22.2",
+    "express-handlebars": "^5.3.5",
+    "mongoose": "^6.13.10",
+    "morgan": "^1.10.1"
+  },
+  "overrides": {
+    "qs": "^6.16.0"
   }
 }
