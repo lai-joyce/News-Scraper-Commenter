@@ -13,7 +13,7 @@ var Article = require("./models/Article.js");
 var headlinesController = require("./controllers/headlines");
 var notesController = require("./controllers/notes");
 // Our scraping tools
-var request = require("request");
+var axios = require("axios");
 var cheerio = require("cheerio");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
@@ -38,11 +38,11 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Setup engine for Handlebars
-app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
+app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 // Database configuration with mongoose
-// mongoose.connect("mongodb://localhost/news-scraper");
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/news-scraper");
 //for Heroku deployment:
 mongoose.connect("mongodb://heroku_4273jblh:2ts62sicm93fq10k4gn5b2l8at@ds129024.mlab.com:29024/heroku_4273jblh");
 var db = mongoose.connection;
@@ -65,7 +65,8 @@ db.once("open", function() {
 app.get("/api/fetch", function(req, res) {
 
   // First, we grab the body of the html with request
-  request("http://www.nature.com/news/newsandviews", function(error, response, html) {
+  axios.get("http://www.nature.com/news/newsandviews").then(function(response) {
+    var html = response.data;
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(html);
 
